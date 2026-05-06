@@ -203,8 +203,10 @@ export default function Schools() {
                         </ul>
                       </div>
                     </div>
+                    </div>
                   </div>
                 </div>
+              </div>
               </div>
               {index === 3 && <AdBanner />}
               </React.Fragment>
