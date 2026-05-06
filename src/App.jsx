@@ -40,30 +40,35 @@ const Navbar = () => {
         }
       });
       
-      // Initial state based on route
-      if (location.pathname !== '/') {
-        gsap.set(navRef.current, { backgroundColor: 'rgba(240, 239, 244, 0.6)', backdropFilter: 'blur(16px)', borderColor: 'rgba(24, 24, 27, 0.1)', color: '#18181B' });
-      } else {
-        gsap.set(navRef.current, { backgroundColor: 'transparent', backdropFilter: 'blur(0px)', borderColor: 'transparent', color: '#F0EFF4' });
-      }
-
+      // Initial state is handled directly via CSS classes in JSX
     });
     return () => ctx.revert();
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.replace('#', ''));
+      if (element) {
+        setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location.pathname, location.hash]);
+
+  const navClass = location.pathname === '/' 
+    ? 'text-[#F0EFF4] border-transparent bg-transparent'
+    : 'text-[#18181B] bg-[rgba(240,239,244,0.6)] backdrop-blur-[16px] border-[rgba(24,24,27,0.1)]';
+
   return (
     <div className="fixed top-6 left-0 w-full flex justify-center z-50 px-4">
-      <nav ref={navRef} className="flex items-center justify-between px-6 py-3 rounded-[3rem] border border-transparent w-full max-w-4xl text-[#F0EFF4] transition-colors">
+      <nav ref={navRef} className={`flex items-center justify-between px-6 py-3 rounded-[3rem] border w-full max-w-4xl transition-colors ${navClass}`}>
         <Link to="/" className="font-bold text-lg tracking-tight">Sama Ecole</Link>
         <div className="hidden md:flex gap-6 font-medium text-sm">
           <Link to="/" className="hover:-translate-y-px transition-transform">Accueil</Link>
           <Link to="/ecoles" className="hover:-translate-y-px transition-transform">Les Écoles</Link>
-          {location.pathname === '/' && (
-            <>
-              <a href="#philosophie" className="hover:-translate-y-px transition-transform">Vision</a>
-              <a href="#protocole" className="hover:-translate-y-px transition-transform">Processus</a>
-            </>
-          )}
+          <Link to="/#philosophie" className="hover:-translate-y-px transition-transform">Vision</Link>
+          <Link to="/#protocole" className="hover:-translate-y-px transition-transform">Processus</Link>
         </div>
         <a href="https://e-concours.ucad.sn" target="_blank" rel="noopener noreferrer" className="magnetic-btn px-5 py-2 bg-[#7B61FF] text-white rounded-full text-sm font-semibold">
           <span className="magnetic-btn-bg"></span>

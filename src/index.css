@@ -48,6 +48,13 @@
   opacity: 0.05;
 }
 
+/* Optimisation Mobile : Désactiver le filtre lourd sur les petits écrans */
+@media (max-width: 768px) {
+  .noise-overlay {
+    display: none;
+  }
+}
+
 /* Magnetic Button Base */
 .magnetic-btn {
   position: relative;

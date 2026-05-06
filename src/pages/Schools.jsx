@@ -138,11 +138,13 @@ export default function Schools() {
 
                 {/* Content (Expandable) */}
                 <div 
-                  className={`px-8 transition-all duration-500 ease-in-out ${
-                    isOpen ? 'max-h-[1000px] pb-8 opacity-100' : 'max-h-0 opacity-0'
+                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                   }`}
                 >
-                  <p className="text-[#18181B]/70 mb-8">{school.description}</p>
+                  <div className="overflow-hidden">
+                    <div className="px-8 pb-8 pt-2">
+                      <p className="text-[#18181B]/70 mb-8">{school.description}</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Left Column */}
