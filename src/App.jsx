@@ -5,8 +5,26 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import Home from './pages/Home';
 import Schools from './pages/Schools';
+import NotFound from './pages/NotFound';
+import ScrollToTop from './components/ScrollToTop';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// --- Page Transition Wrapper ---
+const PageWrapper = ({ children }) => {
+  const pageRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Fade in effect on route change
+    gsap.fromTo(pageRef.current, 
+      { opacity: 0, y: 10 }, 
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+    );
+  }, [location.pathname]);
+
+  return <div ref={pageRef}>{children}</div>;
+};
 
 // --- Noise Overlay Component ---
 const NoiseOverlay = () => (
@@ -126,9 +144,12 @@ function App() {
       <NoiseOverlay />
       <Navbar />
       
+      <ScrollToTop />
+      
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ecoles" element={<Schools />} />
+        <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+        <Route path="/ecoles" element={<PageWrapper><Schools /></PageWrapper>} />
+        <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
       
       <Footer />
