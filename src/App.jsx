@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import News from './pages/News';
 import Training from './pages/Training';
 import ScrollToTop from './components/ScrollToTop';
+import AiChat from './components/AiChat';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -147,6 +148,7 @@ function App() {
       <Navbar />
       
       <ScrollToTop />
+      <AiChat />
       
       <Routes>
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
