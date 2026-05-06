@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Activity, Terminal } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Card1Mixer = () => {
   const [items, setItems] = useState(['Concours commun (8 écoles)', 'Dépôt jusqu\'au 20 mai', 'Épreuves 1er et 2 juin']);
@@ -148,9 +149,15 @@ export default function Features() {
           <p className="text-lg text-[#1A3326]/60 mt-4 max-w-2xl">Tout ce dont vous avez besoin pour réussir les concours d'ingénieurs au Sénégal.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card1Mixer />
-          <Card2Typewriter />
-          <Card3Planner />
+          <Link to="/actualites" className="block hover:-translate-y-2 transition-transform duration-300">
+            <Card1Mixer />
+          </Link>
+          <Link to="/entrainement" className="block hover:-translate-y-2 transition-transform duration-300">
+            <Card2Typewriter />
+          </Link>
+          <Link to="/ecoles" className="block hover:-translate-y-2 transition-transform duration-300">
+            <Card3Planner />
+          </Link>
         </div>
       </div>
     </section>
