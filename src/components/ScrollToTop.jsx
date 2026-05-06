@@ -31,7 +31,7 @@ export default function ScrollToTop() {
       <button
         type="button"
         onClick={scrollToTop}
-        className={`magnetic-btn p-3 bg-[#7B61FF] text-white rounded-full shadow-xl transition-all duration-300 transform ${
+        className={`magnetic-btn p-3 bg-[#D4AF37] text-white rounded-full shadow-xl transition-all duration-300 transform ${
           isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-50 translate-y-10 pointer-events-none'
         }`}
         aria-label="Retour en haut"

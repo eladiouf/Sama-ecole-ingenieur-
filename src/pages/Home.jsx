@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <Features />
       <Philosophy />
-      <div className="px-6 md:px-12 lg:px-24 bg-[#0A0A14]">
+      <div className="px-6 md:px-12 lg:px-24 bg-[#0B120F]">
         <AdBanner />
       </div>
       <Protocol />

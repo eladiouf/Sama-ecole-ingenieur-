@@ -89,19 +89,19 @@ export default function Schools() {
   const [openId, setOpenId] = useState(schoolsData[0].id);
 
   return (
-    <div className="min-h-screen bg-[#F0EFF4] pt-32 pb-24 px-6 md:px-12 lg:px-24">
+    <div className="min-h-screen bg-[#F2F0E9] pt-32 pb-24 px-6 md:px-12 lg:px-24">
       <div className="max-w-5xl mx-auto">
         
         {/* Header */}
         <div className="mb-16">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-[#7B61FF] animate-pulse"></div>
-            <span className="text-xs font-data font-semibold text-[#7B61FF] tracking-wider uppercase">Le Réseau REPFIS</span>
+            <div className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse"></div>
+            <span className="text-xs font-data font-semibold text-[#D4AF37] tracking-wider uppercase">Le Réseau REPFIS</span>
           </div>
-          <h1 className="font-dramatic text-5xl md:text-7xl text-[#18181B] mb-6">
+          <h1 className="font-dramatic text-5xl md:text-7xl text-[#1A3326] mb-6">
             Les 8 Écoles <br/> d'Excellence.
           </h1>
-          <p className="text-lg text-[#18181B]/70 max-w-2xl">
+          <p className="text-lg text-[#1A3326]/70 max-w-2xl">
             Un seul concours commun vous ouvre les portes de ces établissements publics prestigieux. Explorez leurs filières et spécificités pour faire le meilleur choix.
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function Schools() {
               <React.Fragment key={school.id}>
                 <div 
                   className={`bg-white rounded-[2rem] border transition-all duration-300 overflow-hidden ${
-                  isOpen ? 'border-[#7B61FF]/30 shadow-xl shadow-[#7B61FF]/5' : 'border-[#18181B]/10 hover:border-[#18181B]/20'
+                  isOpen ? 'border-[#D4AF37]/30 shadow-xl shadow-[#D4AF37]/5' : 'border-[#1A3326]/10 hover:border-[#1A3326]/20'
                 }`}
               >
                 {/* Header (Clickable) */}
@@ -124,14 +124,14 @@ export default function Schools() {
                   onClick={() => setOpenId(isOpen ? null : school.id)}
                 >
                   <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-                    <h2 className={`text-2xl font-semibold transition-colors ${isOpen ? 'text-[#7B61FF]' : 'text-[#18181B]'}`}>
+                    <h2 className={`text-2xl font-semibold transition-colors ${isOpen ? 'text-[#D4AF37]' : 'text-[#1A3326]'}`}>
                       {school.name}
                     </h2>
-                    <div className="flex items-center gap-1.5 text-xs font-data font-medium text-[#18181B]/50 bg-[#F0EFF4] px-3 py-1 rounded-full w-fit">
+                    <div className="flex items-center gap-1.5 text-xs font-data font-medium text-[#1A3326]/50 bg-[#F2F0E9] px-3 py-1 rounded-full w-fit">
                       <MapPin size={12} /> {school.location}
                     </div>
                   </div>
-                  <div className={`p-2 rounded-full bg-[#F0EFF4] text-[#18181B] transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[#7B61FF] text-white' : ''}`}>
+                  <div className={`p-2 rounded-full bg-[#F2F0E9] text-[#1A3326] transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[#D4AF37] text-white' : ''}`}>
                     <ChevronDown size={20} />
                   </div>
                 </button>
@@ -144,19 +144,19 @@ export default function Schools() {
                 >
                   <div className="overflow-hidden">
                     <div className="px-8 pb-8 pt-2">
-                      <p className="text-[#18181B]/70 mb-8">{school.description}</p>
+                      <p className="text-[#1A3326]/70 mb-8">{school.description}</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Left Column */}
                     <div className="space-y-6">
                       <div>
-                        <div className="flex items-center gap-2 text-[#7B61FF] mb-3">
+                        <div className="flex items-center gap-2 text-[#D4AF37] mb-3">
                           <Target size={18} />
                           <h4 className="font-semibold text-sm uppercase tracking-wide">Filières</h4>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {school.filieres.map(f => (
-                            <span key={f} className="text-xs font-data bg-[#18181B] text-[#F0EFF4] px-3 py-1.5 rounded-lg">
+                            <span key={f} className="text-xs font-data bg-[#1A3326] text-[#F2F0E9] px-3 py-1.5 rounded-lg">
                               {f}
                             </span>
                           ))}
@@ -164,14 +164,14 @@ export default function Schools() {
                       </div>
 
                       <div>
-                        <div className="flex items-center gap-2 text-[#7B61FF] mb-3">
+                        <div className="flex items-center gap-2 text-[#D4AF37] mb-3">
                           <Briefcase size={18} />
                           <h4 className="font-semibold text-sm uppercase tracking-wide">Débouchés</h4>
                         </div>
                         <ul className="space-y-2">
                           {school.debouches.map(d => (
-                            <li key={d} className="text-sm text-[#18181B]/80 flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]/50"></div>
+                            <li key={d} className="text-sm text-[#1A3326]/80 flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/50"></div>
                               {d}
                             </li>
                           ))}
@@ -181,24 +181,24 @@ export default function Schools() {
 
                     {/* Right Column */}
                     <div className="space-y-6">
-                      <div className="bg-[#F0EFF4] p-5 rounded-2xl">
-                        <h4 className="font-semibold text-sm mb-3 flex items-center gap-2 text-[#18181B]">
+                      <div className="bg-[#F2F0E9] p-5 rounded-2xl">
+                        <h4 className="font-semibold text-sm mb-3 flex items-center gap-2 text-[#1A3326]">
                           <span className="text-green-600">+</span> Avantages
                         </h4>
                         <ul className="space-y-2">
                           {school.avantages.map(a => (
-                            <li key={a} className="text-sm text-[#18181B]/70">{a}</li>
+                            <li key={a} className="text-sm text-[#1A3326]/70">{a}</li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="bg-[#F0EFF4] p-5 rounded-2xl">
-                        <h4 className="font-semibold text-sm mb-3 flex items-center gap-2 text-[#18181B]">
+                      <div className="bg-[#F2F0E9] p-5 rounded-2xl">
+                        <h4 className="font-semibold text-sm mb-3 flex items-center gap-2 text-[#1A3326]">
                           <AlertTriangle size={14} className="text-amber-500" /> Inconvénients
                         </h4>
                         <ul className="space-y-2">
                           {school.inconvenients.map(i => (
-                            <li key={i} className="text-sm text-[#18181B]/70">{i}</li>
+                            <li key={i} className="text-sm text-[#1A3326]/70">{i}</li>
                           ))}
                         </ul>
                       </div>
