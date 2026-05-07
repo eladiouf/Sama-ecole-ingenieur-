@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, NavLink } from 'react-router-dom';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -99,7 +99,7 @@ const Navbar = () => {
         <nav ref={navRef} className={`flex items-center justify-between px-5 py-3 rounded-[3rem] border w-full max-w-4xl transition-colors ${navClass}`}>
           
           {/* Logo */}
-          <Link to="/" className="font-bold text-lg tracking-tight">Sama Ecole</Link>
+          <Link to="/" className="font-bold text-lg tracking-tight">Sama Ecole d'Ingénieur</Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex gap-6">
@@ -119,7 +119,7 @@ const Navbar = () => {
               className="hidden md:flex magnetic-btn px-5 py-2 bg-[#D4AF37] text-white rounded-full text-sm font-semibold"
             >
               <span className="magnetic-btn-bg"></span>
-              <span className="relative z-10">S'inscrire</span>
+              <span className="relative z-10">S'inscrire au concours</span>
             </a>
 
             {/* Hamburger button — mobile only */}
@@ -182,7 +182,7 @@ const Footer = () => {
     <footer className="bg-[#05050A] text-[#F2F0E9] pt-24 pb-12 px-6 md:px-12 lg:px-24 rounded-t-[4rem] relative z-20">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-1 md:col-span-2">
-          <h4 className="text-2xl font-bold mb-4">Sama Ecole</h4>
+          <h4 className="text-2xl font-bold mb-4">Sama Ecole d'Ingénieur</h4>
           <p className="text-[#F2F0E9]/60 max-w-sm">
             La plateforme de référence pour les concours d'ingénieurs au Sénégal, propulsée par le REPFIS.
           </p>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import gsap from 'gsap';
 import { Terminal, CheckCircle2, XCircle, ArrowRight, RotateCcw, Loader2, Cpu } from 'lucide-react';

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Calendar, Bell, AlertCircle, ArrowRight } from 'lucide-react';
 import AdBanner from '../components/AdBanner';
