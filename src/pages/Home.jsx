@@ -152,14 +152,14 @@ const SchoolsPreview = () => {
   }, []);
 
   const schools = [
-    { name: 'ESP', loc: 'Dakar', color: 'bg-emerald-100 text-emerald-800' },
-    { name: 'EPT', loc: 'Thiès', color: 'bg-blue-100 text-blue-800' },
-    { name: 'IPSL', loc: 'Saint-Louis', color: 'bg-purple-100 text-purple-800' },
-    { name: 'UFR-SI', loc: 'Thiès', color: 'bg-amber-100 text-amber-800' },
-    { name: 'ENSA', loc: 'Thiès', color: 'bg-green-100 text-green-800' },
-    { name: 'ENSMG', loc: 'Dakar', color: 'bg-red-100 text-red-800' },
-    { name: 'ISFAR', loc: 'Bambey', color: 'bg-orange-100 text-orange-800' },
-    { name: 'Polytech', loc: 'Diamniadio', color: 'bg-indigo-100 text-indigo-800' },
+    { name: 'ESP', loc: 'Dakar', color: 'bg-emerald-100 text-emerald-800', logo: "https://esp.sn/wp-content/uploads/2019/11/logo-esp.png" },
+    { name: 'EPT', loc: 'Thiès', color: 'bg-blue-100 text-blue-800', logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/EPT_logo.svg" },
+    { name: 'IPSL', loc: 'Saint-Louis', color: 'bg-purple-100 text-purple-800', logo: "https://www9.ugb.sn/ipsl/wp-content/uploads/2018/11/logo-ipsl.png" },
+    { name: 'UFR-SI', loc: 'Thiès', color: 'bg-amber-100 text-amber-800', logo: "https://ufrsi.uidt.sn/wp-content/uploads/2021/04/logo-ufr-si-300x300.png" },
+    { name: 'ENSA', loc: 'Thiès', color: 'bg-green-100 text-green-800', logo: "https://upload.wikimedia.org/wikipedia/fr/b/b2/Logo_ENSA_%28Ecole_Nationale_Sup%C3%A9rieure_d%27Agriculture%29.jpg" },
+    { name: 'ENSMG', loc: 'Dakar', color: 'bg-red-100 text-red-800', logo: "https://ensmg.ucad.sn/sites/default/files/logo_ensmg.png" },
+    { name: 'ISFAR', loc: 'Bambey', color: 'bg-orange-100 text-orange-800', logo: "https://uadb.edu.sn/sites/default/files/logo_isfar.png" },
+    { name: 'Polytech', loc: 'Diamniadio', color: 'bg-indigo-100 text-indigo-800', logo: "https://polytech.sn/wp-content/uploads/2023/10/logo_polytech_diamniadio.png" },
   ];
 
   return (
@@ -179,9 +179,12 @@ const SchoolsPreview = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {schools.map(s => (
-            <div key={s.name} className="school-pill bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors">
-              <span className={`text-xs font-data font-bold px-2 py-1 rounded-lg ${s.color} mb-3 block w-fit`}>{s.name}</span>
-              <p className="text-[#F2F0E9]/70 text-sm font-data">{s.loc}</p>
+            <div key={s.name} className="school-pill bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:-translate-y-1 group">
+              <div className="w-12 h-12 bg-white rounded-xl mb-4 p-2 flex items-center justify-center overflow-hidden">
+                <img src={s.logo} alt={s.name} className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all" />
+              </div>
+              <span className={`text-xs font-data font-bold px-2 py-1 rounded-lg ${s.color} mb-2 block w-fit`}>{s.name}</span>
+              <p className="text-[#F2F0E9]/70 text-xs font-data">{s.loc}</p>
             </div>
           ))}
         </div>

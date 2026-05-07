@@ -13,6 +13,7 @@ import Terms from './pages/Terms';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import AiChat from './components/AiChat';
+import Logo from './components/Logo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,7 +103,9 @@ const Navbar = () => {
         <nav ref={navRef} className={`flex items-center justify-between px-5 py-3 rounded-[3rem] border w-full max-w-4xl transition-colors ${navClass}`}>
           
           {/* Logo */}
-          <Link to="/" className="font-bold text-lg tracking-tight">Sama Ecole d'Ingénieur</Link>
+          <Link to="/" className="flex items-center">
+            <Logo className="h-10 md:h-12" />
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex gap-6">
@@ -185,7 +188,9 @@ const Footer = () => {
     <footer className="bg-[#05050A] text-[#F2F0E9] pt-24 pb-12 px-6 md:px-12 lg:px-24 rounded-t-[4rem] relative z-20">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-1 md:col-span-2">
-          <h4 className="text-2xl font-bold mb-4">Sama Ecole d'Ingénieur</h4>
+          <Link to="/" className="inline-block mb-6">
+            <Logo className="h-12" />
+          </Link>
           <p className="text-[#F2F0E9]/60 max-w-sm">
             La plateforme de référence pour les concours d'ingénieurs au Sénégal, propulsée par le REPFIS.
           </p>

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, MapPin, Target, Briefcase, AlertTriangle } from 'lucide-react';
 import AdBanner from '../components/AdBanner';
 
@@ -6,6 +6,7 @@ const schoolsData = [
   {
     id: 'esp',
     name: "ESP (École Supérieure Polytechnique)",
+    logo: "https://esp.sn/wp-content/uploads/2019/11/logo-esp.png",
     location: "Dakar — UCAD",
     description: "La plus ancienne et prestigieuse école d'ingénieurs publique du Sénégal, rattachée à l'Université Cheikh Anta Diop. Elle délivre le DUT (Bac+2), le DIT (Bac+4) et le Diplôme d'Ingénieur de Conception — DIC (Bac+5).",
     filieres: ["Génie Informatique", "Génie Électrique", "Génie Mécanique", "Génie Civil", "Génie Chimique et Biologie Appliquée"],
@@ -16,6 +17,7 @@ const schoolsData = [
   {
     id: 'ept',
     name: "EPT (École Polytechnique de Thiès)",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/EPT_logo.svg",
     location: "Thiès",
     description: "École d'excellence sous tutelle de l'État, fonctionnant en régime d'internat. Formation en 5 ans : 2 ans de tronc commun + 3 ans de spécialisation. Très reconnue pour sa rigueur et sa cohésion.",
     filieres: ["Génie Civil", "Génie Électromécanique & Aéronautique", "Génie Informatique et Télécommunications", "Génie Industriel"],
@@ -26,6 +28,7 @@ const schoolsData = [
   {
     id: 'ipsl',
     name: "IPSL (Institut Polytechnique de Saint-Louis)",
+    logo: "https://www9.ugb.sn/ipsl/wp-content/uploads/2018/11/logo-ipsl.png",
     location: "Saint-Louis — UGB",
     description: "Institut d'ingénieurs de l'Université Gaston Berger (UGB) de Saint-Louis. Cadre d'études exceptionnel dans la capitale historique du Nord du Sénégal, reconnue pour sa rigueur scientifique.",
     filieres: ["Génie Civil", "Génie Électromécanique", "Génie Informatique et Télécoms"],
@@ -36,6 +39,7 @@ const schoolsData = [
   {
     id: 'ufr-si',
     name: "UFR Sciences de l'Ingénieur (UIDT)",
+    logo: "https://ufrsi.uidt.sn/wp-content/uploads/2021/04/logo-ufr-si-300x300.png",
     location: "Thiès",
     description: "Composante de l'Université Iba Der Thiam (UIDT). Propose des formations d'ingénieurs dans des filières ciblées dont la Géomatique — une spécialité rare et très recherchée au Sénégal.",
     filieres: ["Génie Civil", "Géotechnique", "Géomètre-Topographe", "Géomatique", "QHSE (Qualité, Hygiène, Sécurité, Environnement)"],
@@ -46,6 +50,7 @@ const schoolsData = [
   {
     id: 'ensa',
     name: "ENSA (École Nationale Supérieure d'Agriculture)",
+    logo: "https://upload.wikimedia.org/wikipedia/fr/b/b2/Logo_ENSA_%28Ecole_Nationale_Sup%C3%A9rieure_d%27Agriculture%29.jpg",
     location: "Thiès — Université de Thiès",
     description: "La référence nationale pour la formation des ingénieurs agronomes. Forme les futurs experts du secteur agricole et alimentaire dans un pays où l'agro-industrie est en plein développement.",
     filieres: ["Production Végétale", "Production Animale", "Économie Rurale et Développement", "Génie Rural et Eaux & Forêts"],
@@ -56,6 +61,7 @@ const schoolsData = [
   {
     id: 'ensmg',
     name: "ENSMG (École Nationale Supérieure des Mines et de la Géologie)",
+    logo: "https://ensmg.ucad.sn/sites/default/files/logo_ensmg.png",
     location: "Dakar",
     description: "Anciennement Institut des Sciences de la Terre (IST), l'ENSMG forme l'élite du secteur extractif — en plein essor au Sénégal grâce aux découvertes pétrolières (Sangomar) et gazières (Grand Tortue Ahmeyim).",
     filieres: ["Géologie de l'Ingénieur", "Mines et Carrières", "Hydrogéologie", "Géophysique Appliquée"],
@@ -66,6 +72,7 @@ const schoolsData = [
   {
     id: 'isfar',
     name: "ISFAR (Institut Supérieur de Formation Agricole et Rurale)",
+    logo: "https://uadb.edu.sn/sites/default/files/logo_isfar.png",
     location: "Bambey — Université Alioune Diop",
     description: "Institut de l'Université Alioune Diop de Bambey, spécialisé dans le développement rural et la gestion des ressources naturelles. Forme des ingénieurs au service du monde rural sénégalais.",
     filieres: ["Développement Rural & Planification", "Foresterie & Gestion des Ressources Naturelles", "Agriculture & Agroécologie"],
@@ -76,6 +83,7 @@ const schoolsData = [
   {
     id: 'polytech-diamniadio',
     name: "Polytech Diamniadio (UAM)",
+    logo: "https://polytech.sn/wp-content/uploads/2023/10/logo_polytech_diamniadio.png",
     location: "Diamniadio — Université Amadou Mahtar Mbow",
     description: "La plus récente école du réseau REPFIS. Rattachée à l'UAM dans la ville intelligente de Diamniadio, elle propose 5 départements tournés vers les technologies d'avenir, incluant l'ingénierie informatique et les systèmes énergétiques.",
     filieres: ["Ingénierie Informatique & Systèmes d'Information", "Énergies Renouvelables & Systèmes Énergétiques", "Génie Civil & Bâtiment Intelligent", "Électronique & Automatique Industrielle"],
@@ -123,12 +131,22 @@ export default function Schools() {
                   className="w-full text-left px-8 py-6 flex items-center justify-between"
                   onClick={() => setOpenId(isOpen ? null : school.id)}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-                    <h2 className={`text-2xl font-semibold transition-colors ${isOpen ? 'text-[#D4AF37]' : 'text-[#1A3326]'}`}>
-                      {school.name}
-                    </h2>
-                    <div className="flex items-center gap-1.5 text-xs font-data font-medium text-[#1A3326]/50 bg-[#F2F0E9] px-3 py-1 rounded-full w-fit">
-                      <MapPin size={12} /> {school.location}
+                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                    <div className="w-16 h-16 shrink-0 bg-white rounded-xl border border-[#1A3326]/5 p-2 flex items-center justify-center overflow-hidden">
+                      <img 
+                        src={school.logo} 
+                        alt={`${school.name} logo`} 
+                        className="max-w-full max-h-full object-contain"
+                        onError={(e) => { e.target.src = 'https://via.placeholder.com/64?text=Logo'; }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <h2 className={`text-2xl font-semibold transition-colors ${isOpen ? 'text-[#D4AF37]' : 'text-[#1A3326]'}`}>
+                        {school.name}
+                      </h2>
+                      <div className="flex items-center gap-1.5 text-xs font-data font-medium text-[#1A3326]/50 bg-[#F2F0E9] px-3 py-1 rounded-full w-fit">
+                        <MapPin size={12} /> {school.location}
+                      </div>
                     </div>
                   </div>
                   <div className={`p-2 rounded-full bg-[#F2F0E9] text-[#1A3326] transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[#D4AF37] text-white' : ''}`}>
