@@ -1,6 +1,6 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-export default function AdBanner({ client = "pub-2416434857756716", slot = "4209517689", format = "auto", responsive = "true" }) {
+export default function AdBanner({ client = "pub-7625604888475092", slot = "4209517689", format = "auto", responsive = "true" }) {
   useEffect(() => {
     try {
       if (window) {
