@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, Zap, BookOpen, Trophy, Users } from 'lucide-react';
 import AdBanner from '../components/AdBanner';
 
-gsap.registerPlugin(ScrollTrigger);
+// Le plugin est déjà enregistré dans main.jsx
 
 // ── HERO ──────────────────────────────────────
 const Hero = () => {

@@ -15,7 +15,7 @@ import ScrollToTop from './components/ScrollToTop';
 import AiChat from './components/AiChat';
 import Logo from './components/Logo';
 
-gsap.registerPlugin(ScrollTrigger);
+// Le plugin est déjà enregistré dans main.jsx
 
 // --- Page Transition Wrapper ---
 const PageWrapper = ({ children }) => {
@@ -28,6 +28,11 @@ const PageWrapper = ({ children }) => {
       { opacity: 0, y: 10 }, 
       { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
     );
+    
+    // Refresh ScrollTrigger to recalculate positions (fix missing sections on home)
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 300);
   }, [location.pathname]);
 
   return <div ref={pageRef}>{children}</div>;
