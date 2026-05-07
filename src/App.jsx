@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, NavLink } from 'react-router-dom';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -43,25 +43,27 @@ const NoiseOverlay = () => (
 const Navbar = () => {
   const navRef = useRef(null);
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
-    // Reset background if not on home page, or apply scroll effect
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         start: 'top -50',
         onUpdate: (self) => {
           if (self.direction === 1) {
-            gsap.to(navRef.current, { backgroundColor: 'rgba(240, 239, 244, 0.6)', backdropFilter: 'blur(16px)', borderColor: 'rgba(24, 24, 27, 0.1)', color: '#1A3326', duration: 0.3 });
+            gsap.to(navRef.current, { backgroundColor: 'rgba(242,240,233,0.85)', backdropFilter: 'blur(16px)', borderColor: 'rgba(26,51,38,0.12)', color: '#1A3326', duration: 0.3 });
           } else if (self.progress === 0 && location.pathname === '/') {
             gsap.to(navRef.current, { backgroundColor: 'transparent', backdropFilter: 'blur(0px)', borderColor: 'transparent', color: '#F2F0E9', duration: 0.3 });
           } else if (self.progress === 0 && location.pathname !== '/') {
-             // For non-home pages, keep it styled since there's no dark hero
-            gsap.to(navRef.current, { backgroundColor: 'rgba(240, 239, 244, 0.6)', backdropFilter: 'blur(16px)', borderColor: 'rgba(24, 24, 27, 0.1)', color: '#1A3326', duration: 0.3 });
+            gsap.to(navRef.current, { backgroundColor: 'rgba(242,240,233,0.85)', backdropFilter: 'blur(16px)', borderColor: 'rgba(26,51,38,0.12)', color: '#1A3326', duration: 0.3 });
           }
         }
       });
-      
-      // Initial state is handled directly via CSS classes in JSX
     });
     return () => ctx.revert();
   }, [location.pathname]);
@@ -77,26 +79,100 @@ const Navbar = () => {
     }
   }, [location.pathname, location.hash]);
 
-  const navClass = location.pathname === '/' 
+  const navClass = location.pathname === '/'
     ? 'text-[#F2F0E9] border-transparent bg-transparent'
-    : 'text-[#1A3326] bg-[rgba(240,239,244,0.6)] backdrop-blur-[16px] border-[rgba(24,24,27,0.1)]';
+    : 'text-[#1A3326] bg-[rgba(242,240,233,0.85)] backdrop-blur-[16px] border-[rgba(26,51,38,0.12)]';
+
+  const linkClass = 'hover:-translate-y-px transition-transform font-medium text-sm';
+
+  const navLinks = [
+    { to: '/', label: 'Accueil' },
+    { to: '/ecoles', label: 'Les Écoles' },
+    { to: '/actualites', label: 'Actualités' },
+    { to: '/entrainement', label: 'Entraînement' },
+  ];
 
   return (
-    <div className="fixed top-6 left-0 w-full flex justify-center z-50 px-4">
-      <nav ref={navRef} className={`flex items-center justify-between px-6 py-3 rounded-[3rem] border w-full max-w-4xl transition-colors ${navClass}`}>
-        <Link to="/" className="font-bold text-lg tracking-tight">Sama Ecole</Link>
-        <div className="hidden md:flex gap-6 font-medium text-sm">
-          <Link to="/" className="hover:-translate-y-px transition-transform">Accueil</Link>
-          <Link to="/ecoles" className="hover:-translate-y-px transition-transform">Les Écoles</Link>
-          <Link to="/actualites" className="hover:-translate-y-px transition-transform">Actualités</Link>
-          <Link to="/entrainement" className="hover:-translate-y-px transition-transform">Entraînement</Link>
+    <>
+      {/* Main pill navbar */}
+      <div className="fixed top-4 left-0 w-full flex justify-center z-50 px-4">
+        <nav ref={navRef} className={`flex items-center justify-between px-5 py-3 rounded-[3rem] border w-full max-w-4xl transition-colors ${navClass}`}>
+          
+          {/* Logo */}
+          <Link to="/" className="font-bold text-lg tracking-tight">Sama Ecole</Link>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex gap-6">
+            {navLinks.map(({ to, label }) => (
+              <NavLink key={to} to={to} className={({ isActive }) =>
+                `${linkClass} ${isActive ? 'opacity-100 font-semibold' : 'opacity-70'}`
+              }>{label}</NavLink>
+            ))}
+          </div>
+
+          {/* Right side */}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://e-concours.ucad.sn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex magnetic-btn px-5 py-2 bg-[#D4AF37] text-white rounded-full text-sm font-semibold"
+            >
+              <span className="magnetic-btn-bg"></span>
+              <span className="relative z-10">S'inscrire</span>
+            </a>
+
+            {/* Hamburger button — mobile only */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-xl border border-current/20 p-2"
+              aria-label="Menu"
+            >
+              <span className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile slide-down menu */}
+      <div className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out ${
+        mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}>
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+        
+        {/* Menu panel */}
+        <div className={`relative bg-[#1A3326] text-[#F2F0E9] pt-24 pb-8 px-6 flex flex-col gap-2 transition-transform duration-300 ${
+          mobileOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}>
+          {navLinks.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                `py-4 px-4 text-xl font-semibold border-b border-white/10 flex items-center justify-between ${
+                  isActive ? 'text-[#D4AF37]' : 'text-[#F2F0E9]/80'
+                }`
+              }
+            >
+              {label}
+              <span className="text-[#D4AF37] text-2xl">&rsaquo;</span>
+            </NavLink>
+          ))}
+          
+          <a
+            href="https://e-concours.ucad.sn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 py-4 px-6 bg-[#D4AF37] text-[#1A3326] rounded-2xl text-lg font-bold text-center"
+          >
+            S'inscrire au concours
+          </a>
         </div>
-        <a href="https://e-concours.ucad.sn" target="_blank" rel="noopener noreferrer" className="magnetic-btn px-5 py-2 bg-[#D4AF37] text-white rounded-full text-sm font-semibold">
-          <span className="magnetic-btn-bg"></span>
-          <span className="relative z-10">S'inscrire</span>
-        </a>
-      </nav>
-    </div>
+      </div>
+    </>
   );
 };
 
