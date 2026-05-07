@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, NavLink } from 'react-router-dom';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -8,6 +8,9 @@ import Schools from './pages/Schools';
 import NotFound from './pages/NotFound';
 import News from './pages/News';
 import Training from './pages/Training';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import AiChat from './components/AiChat';
 
@@ -192,14 +195,16 @@ const Footer = () => {
           <ul className="space-y-3 text-[#F2F0E9]/70">
             <li><Link to="/" className="hover:text-white transition-colors">Accueil</Link></li>
             <li><Link to="/ecoles" className="hover:text-white transition-colors">Les Écoles REPFIS</Link></li>
+            <li><Link to="/actualites" className="hover:text-white transition-colors">Actualités</Link></li>
+            <li><Link to="/entrainement" className="hover:text-white transition-colors">Entraînement</Link></li>
           </ul>
         </div>
         <div>
-          <h5 className="font-semibold mb-4 text-[#D4AF37] font-data text-sm">LEGAL</h5>
+          <h5 className="font-semibold mb-4 text-[#D4AF37] font-data text-sm">LEGAL &amp; CONTACT</h5>
           <ul className="space-y-3 text-[#F2F0E9]/70">
-            <li><a href="#" className="hover:text-white transition-colors">Confidentialité</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Conditions</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+            <li><Link to="/confidentialite" className="hover:text-white transition-colors">Confidentialité</Link></li>
+            <li><Link to="/conditions" className="hover:text-white transition-colors">Conditions d'utilisation</Link></li>
+            <li><Link to="/contact" className="hover:text-white transition-colors">Nous contacter</Link></li>
           </ul>
         </div>
       </div>
@@ -231,6 +236,9 @@ function App() {
         <Route path="/ecoles" element={<PageWrapper><Schools /></PageWrapper>} />
         <Route path="/actualites" element={<PageWrapper><News /></PageWrapper>} />
         <Route path="/entrainement" element={<PageWrapper><Training /></PageWrapper>} />
+        <Route path="/confidentialite" element={<PageWrapper><Privacy /></PageWrapper>} />
+        <Route path="/conditions" element={<PageWrapper><Terms /></PageWrapper>} />
+        <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
       
